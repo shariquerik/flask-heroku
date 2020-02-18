@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% if title=='Product' %}
+        <div class="container px-5 py-3">  
+            <h2 class="mb-4">{{ title }}s</h2>  
+            {% if products %}
+                <div class="row">
+                    <div class="col-md-5">
+                        <ul class="list-group">
+                            {% for product in products %}
+                                <li class="list-group-item list-group-item-action"><span>{{ loop.index }}.&nbsp;&nbsp;&nbsp;</span><a href="{{ url_for('products.product', product_id=product.product_id) }}">{{ product.product_name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            {% else %}
+                <div>No items found!! Please add product in the inventory.</div>
+            {% endif %}
+        </div>
+    {% endif %}
+    
+    {% if title=='Update Product' %}
+        <div>
+            <h3>{{ title }}</h3>  
+            <h4>{{ product.product_name }} 
+                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('products.update_product', product_id=product.product_id) }}">Update</a>
+                <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button>
+            </h4>
+        </div>
+        <!-- Delete Modal -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Delete Post?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <form action="{{ url_for('products.delete_product', product_id=product.product_id) }}" method="POST">
+                            <input class="btn btn-danger" type="submit" value="Delete">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock content %}

@@ -1,0 +1,105 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST" action="">
+            {{  form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">{{ legend }}</legend>
+
+                <!-- For New Product and Update Product -->
+                {% if legend=='New Product' or legend=='Update Product' %}
+                    <div class="form-group">
+                        {{ form.product_name.label(class="form-control-label") }}
+                        {% if form.product_name.errors %}
+                            {{ form.product_name(class="form-control form-control-lg is-invalid") }} 
+                            <div class="invalid-feedback">
+                                {% for error in form.product_name.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>  
+                        {% else %}
+                            {{ form.product_name(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                {% endif %}
+
+                <!-- For New Location and Update Location -->
+                {% if legend=='New Location' or legend=='Update Location'%}
+                    <div class="form-group">
+                        {{ form.location_name.label(class="form-control-label") }}
+                        {% if form.location_name.errors %}
+                            {{ form.location_name(class="form-control form-control-lg is-invalid") }} 
+                            <div class="invalid-feedback">
+                                {% for error in form.location_name.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>  
+                        {% else %}
+                            {{ form.location_name(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                {% endif %}
+
+                <!-- For New Product Movement and Update Moved Product -->
+                {% if legend=='New Product Movement' or legend=='Update Moved Product'%}
+                    <div class="form-group">
+                        {{ form.from_location.label(class="form-control-label") }}
+                        {% if form.from_location.errors %}
+                            {{ form.from_location(class="form-control form-control-lg is-invalid") }} 
+                            <div class="invalid-feedback">
+                                {% for error in form.from_location.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>  
+                        {% else %}
+                            {{ form.from_location(class="form-control form-control-lg")}}
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.to_location.label(class="form-control-label") }}
+                        {% if form.to_location.errors %}
+                            {{ form.to_location(class="form-control form-control-lg is-invalid") }} 
+                            <div class="invalid-feedback">
+                                {% for error in form.to_location.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>  
+                        {% else %}
+                            {{ form.to_location(class="form-control form-control-lg")}}
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.product_id.label(class="form-control-label") }}
+                        {% if form.product_id.errors %}
+                            {{ form.product_id(class="form-control form-control-lg is-invalid") }} 
+                            <div class="invalid-feedback">
+                                {% for error in form.product_id.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>  
+                        {% else %}
+                            {{ form.product_id(class="form-control form-control-lg")}}
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.qty.label(class="form-control-label") }}
+                        {% if form.qty.errors %}
+                            {{ form.qty(class="form-control form-control-lg is-invalid") }} 
+                            <div class="invalid-feedback">
+                                {% for error in form.qty.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>  
+                        {% else %}
+                            {{ form.qty(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                {% endif %}
+
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+{% endblock content %}
