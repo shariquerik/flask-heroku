@@ -3,19 +3,24 @@
     {% if title=='Product' %}
         <div class="container px-5 py-3">  
             <h2 class="mb-4">{{ title }}s</h2>  
-            {% if products %}
-                <div class="row">
-                    <div class="col-md-5">
-                        <ul class="list-group">
+            <div class="row">
+                <div class="col-md-5">
+                    <ul class="list-group">
+                        {% if products %}
                             {% for product in products %}
                                 <li class="list-group-item list-group-item-action"><span>{{ loop.index }}.&nbsp;&nbsp;&nbsp;</span><a href="{{ url_for('products.product', product_id=product.product_id) }}">{{ product.product_name }}</a></li>
                             {% endfor %}
-                        </ul>
-                    </div>
+                        {% else %}
+                            <li class="list-group-item list-group-item-action">No items found!! Please add product in the inventory.</li>
+                        {% endif %}
+                    </ul>
                 </div>
-            {% else %}
-                <div>No items found!! Please add product in the inventory.</div>
-            {% endif %}
+                <div class="add">
+                    <button type="button" id="sidebarCollapse" class="add-button btn btn-primary">
+                        <a href="{{ url_for('products.new_product') }}"><i class="fas fa-plus"></i></a>
+                    </button><a class="b" href="{{ url_for('products.new_product') }}"><i>Add Product</i></a>
+                </div>
+            </div>
         </div>
     {% endif %}
     

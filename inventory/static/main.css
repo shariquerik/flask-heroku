@@ -1,84 +1,47 @@
-body {
-    background: #fafafa;
-    color: #333333;
-    margin-top: 5rem;
+.add-button{
+    border-radius: 50% !important;
+  }
+
+.add{
+    margin-left: 3rem;
+    margin-top: 1.3rem;
+  }
+
+ @media (max-width: 991.98px) {
+    #content .add {
+    margin-right: -60px !important;
+    top: 10px !important; } 
 }
 
-h1,h2,h3,h4,h5,h6 {
-    color: #444444;
-}
+#content .add {
+    display: inline-block;
+    position: absolute;
+    top: 20px;
+    right: 0;
+    margin-right: -20px;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s; }
 
-.bg-steel {
-    background-color: #5f788a;
-}
+@media (prefers-reduced-motion: reduce) {
+    #content .add {
+        -webkit-transition: none;
+        -o-transition: none;
+        transition: none; } }
 
-.site-header .navbar-nav .nav-link {
-    color: #cbd5db;
-}
 
-.site-header .navbar-nav .nav-link:hover {
-    color: #ffffff;
-}
+#content .add .btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; }
 
-.site-header .navbar-nav .nav-link.active {
-    font-weight: 500;
-}
-
-.content-section {
-    background: #ffffff;
-    padding: 10px 20px;
-    border: 1px solid #dddddd;
-    border-radius: 3px;
-    margin-bottom: 20px;
-}
-
-.article-title {
-    color: #444444;
-}
-
-a.article-title:hover {
-    color: #428bca;
-    text-decoration: none;
-}
-
-.article-content {
-    white-space: pre-line;
-}
-
-.article-img {
-    height: 65px;
-    width: 65px;
-    margin-right: 16px;
-}
-
-.article-metadata {
-    padding-bottom: 1px;
-    margin-bottom: 4px;
-    border-bottom: 1px solid #e3e3e3
-}
-
-.article-metadata a:hover {
-    color: #333;
-    text-decoration: none;
-}
-
-.article-svg {
-    width: 25px;
-    height: 25px;
-    vertical-align: middle;
-}
-
-.account-img {
-    height: 125px;
-    width: 125px;
-    margin-right: 20px;
-    margin-bottom: 16px;
-}
-
-.account-heading {
-    font-size: 2.5rem;
-}
-
+#content .add .btn.btn-primary {
+    background: #393c7f;
+    border-color: #393c7f; }
+    
+#content .add .btn.btn-primary:hover, #content .add .btn.btn-primary:focus {
+    background: #393c7f !important;
+    border-color: #393c7f !important; }
 
 
 

@@ -12,6 +12,11 @@
                             {% endfor %}
                         </ul>
                     </div>
+                    <div class="add">
+                        <button type="button" id="sidebarCollapse" class="add-button btn btn-primary">
+                            <a href="{{ url_for('locations.new_location') }}"><i class="fas fa-plus"></i></a>
+                        </button><a class="b" href="{{ url_for('locations.new_location') }}"><i>Add Location</i></a>
+                    </div>
                 </div>
             {% else %}
                 <div>No locations added. Please add location to view.</div>
