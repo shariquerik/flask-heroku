@@ -28,6 +28,7 @@ def update_product(product_id):
         return redirect(url_for('products.product', product_id=product.product_id))
     elif request.method == 'GET':
         form.product_name.data = product.product_name
+    form.submit.label.text = 'Update Product'
     return render_template('create.html', title='Update Product', form=form, legend='Update Product') 
 
 @products.route("/product/<int:product_id>")

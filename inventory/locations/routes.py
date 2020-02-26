@@ -28,6 +28,7 @@ def update_location(location_id):
         return redirect(url_for('locations.location', location_id=location.location_id))
     elif request.method == 'GET':
         form.location_name.data = location.location_name
+    form.submit.label.text = 'Update Location'
     return render_template('create.html', title='Update Location', form=form, legend='Update Location') 
 
 @locations.route("/location/<int:location_id>")

@@ -75,6 +75,29 @@
             transition: max-width 1s ease-out .1s, opacity 1s ease-out .1s, color .2s;
 		}
 
+		.n {
+			padding-top: 3px;
+			float: right;
+			display: none;
+			color: blue;
+		}
+
+		.bt {
+			float: right;
+			display: none;
+			color: red;
+		}
+
+		.l:hover .n {
+			display: inline;
+			color: blue;
+		}
+
+		.l:hover .bt {
+			display: inline;
+			color: red;
+		}
+
 	</style>
 </head>
 
@@ -90,9 +113,9 @@
 			<div class="p-4">
 				<h1><a href="/" class="logo">Invento</a></h1>
 				<ul class="list-unstyled components mb-5">
-					<li class="active">
+					<!-- <li>
 						<a href="/"><i class="fas fa-chart-pie mr-3"></i> Dashboard</a>
-					</li>
+					</li> -->
 					<li>
                         <a class="nav-item nav-link" href="{{ url_for('main.product') }}"><i class="fas fa-boxes mr-3"></i> Product</a>
 					</li>
@@ -142,7 +165,6 @@
 
     <!-- Other JavaScript -->
     <script src="{{ url_for('static', filename='main.js') }}"></script>
-	
 
 </body>
 

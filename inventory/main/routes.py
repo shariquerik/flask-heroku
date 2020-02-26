@@ -5,6 +5,7 @@ from inventory import db
 main = Blueprint('main', __name__)
 
 #inventory
+@main.route("/")
 @main.route("/product")
 def product():
     products = Product.query.order_by(Product.product_name).all()
@@ -29,6 +30,6 @@ def report():
     qty = ProductMovement.query
     return render_template('report.html', title='Report', product_movements=product_movements, qty=qty, product=product)
 
-@main.route("/")
+@main.route("/dashboard")
 def dashboard():
     return render_template('dashboard.html', title='Dashboard')

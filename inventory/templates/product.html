@@ -8,7 +8,35 @@
                     <ul class="list-group">
                         {% if products %}
                             {% for product in products %}
-                                <li class="list-group-item list-group-item-action"><span>{{ loop.index }}.&nbsp;&nbsp;&nbsp;</span><a href="{{ url_for('products.product', product_id=product.product_id) }}">{{ product.product_name }}</a></li>
+                                <li class="list-group-item list-group-item-action l">
+                                    <span>{{ loop.index }}.</span>
+                                    <span class="pl-2">{{ product.product_name }}</span>
+                                    <button type="button" class="btn btn-sm bt" data-toggle="modal" data-target="#deleteModal">
+                                        <i class="fas fa-trash-alt pl-2"></i>
+                                    </button>
+                                    <a class="n" href="{{ url_for('products.update_product', product_id=product.product_id) }}">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </a>
+                                </li>
+                                
+                                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="deleteModalLabel">Delete Post?</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <form action="{{ url_for('products.delete_product', product_id=product.product_id) }}" method="POST">
+                                                    <input class="btn btn-danger" type="submit" value="Delete">
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             {% endfor %}
                         {% else %}
                             <li class="list-group-item list-group-item-action">No items found!! Please add product in the inventory.</li>
@@ -24,15 +52,14 @@
         </div>
     {% endif %}
     
-    {% if title=='Update Product' %}
+    <!-- {% if title=='Update Product' %}
         <div>
             <h3>{{ title }}</h3>  
             <h4>{{ product.product_name }} 
                 <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('products.update_product', product_id=product.product_id) }}">Update</a>
                 <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button>
             </h4>
-        </div>
-        <!-- Delete Modal -->
+        </div> 
         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -51,5 +78,5 @@
                 </div>
             </div>
         </div>
-    {% endif %}
+    {% endif %} -->
 {% endblock content %}
