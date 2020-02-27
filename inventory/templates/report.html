@@ -1,30 +1,37 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="container px-5 py-3">
-    <h2 class="mb-4">Warehouse Product Quantity Report</h2>           
-    <table class="table table-hover table-responsive">
-      <thead class="thead-light">
-        <tr>
-          <th>Product</th>
-          <th>Warehouse</th>
-          <th>Quantity</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% if not product_movements %}
-          <tr>
-            <td colspan="3">All Warehouse's are empty. Add products in warhouse to see the report.</td>
-          </tr>
-        {% else %}
-          {% for product_movement in product_movements %}
+  <div class="container px-5 py-3">
+    <div>
+      <h2 class="mb-4 phead">PRODUCT QUANTITY REPORT</h2>  
+    </div>
+    <div class="row">
+      <div class="ml-3">
+        <table class="table table-hover table-responsive table-bordered">
+          <thead class="thead-light">
             <tr>
-              <td>{{ product.get(product_movement.product_id).product_name }}</td>
-              <td>{{ product_movement.to_location }}</td>
-              <td>{{ qty.filter_by(to_location=product_movement.to_location, from_location="", product_id=product_movement.product_id).first().qty }}</td>
+              <th>Product</th>
+              <th>Warehouse</th>
+              <th>Quantity</th>
             </tr>
-          {% endfor %}
-        {% endif %}
-      </tbody>
-    </table>
+          </thead>
+          <tbody>
+            {% if not product_movements %}
+              <tr>
+                <td colspan="3">All Warehouse's are empty. Add products in warhouse to see the report.</td>
+              </tr>
+            {% else %}
+              {% for product_movement in product_movements %}
+                <tr>
+                  <td>{{ product.get(product_movement.product_id).product_name }}</td>
+                  <td>{{ product_movement.to_location }}</td>
+                  <td>{{ qty.filter_by(to_location=product_movement.to_location, from_location="", product_id=product_movement.product_id).first().qty }}</td>
+                </tr>
+              {% endfor %}
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+      <div></div>
+    </div>  
   </div>
 {% endblock content %}

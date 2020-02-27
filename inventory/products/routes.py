@@ -25,7 +25,7 @@ def update_product(product_id):
         product.product_name = form.product_name.data
         db.session.commit()
         flash('Your product has been updated!', 'success')
-        return redirect(url_for('products.product', product_id=product.product_id))
+        return redirect(url_for('main.product', product_id=product.product_id))
     elif request.method == 'GET':
         form.product_name.data = product.product_name
     form.submit.label.text = 'Update Product'

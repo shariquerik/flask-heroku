@@ -3,18 +3,19 @@
     {% if title=='Moved Product' %}
         <div class="container px-5 py-3">  
             <div>
-                <h2 class="mb-4">{{ title }}s</h2> 
+                <h2 class="mb-4 phead">{{ title }}s</h2> 
             </div>
             <div class="row">
                 <div class="ml-3">
-                    <table class="table table-hover table-responsive">
+                    <table class="table table-hover table-responsive table-bordered">
                         <thead class="thead-light">
                             <tr>
-                            <th>Product</th>
-                            <th>From</th>
-                            <th>To</th>
-                            <th>Quantity</th>
-                            <th>Time Stamp</th>
+                                <th>Product</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Quantity</th>
+                                <th>Time Stamp</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -24,19 +25,45 @@
                                 </tr>
                             {% else %}
                                 {% for product_movement in product_movements %}
-                                    <tr>
-                                        <td><a href="{{ url_for('product_movements.product_movement', movement_id=product_movement.movement_id) }}">{{ products.get(product_movement.product_id).product_name }}</a></td>
+                                    <tr class="l">
+                                        <td>{{ products.get(product_movement.product_id).product_name }}</td>
                                         <td>{{ product_movement.from_location }}</td>
                                         <td>{{ product_movement.to_location }}</td>
                                         <td>{{ product_movement.qty }}</td>
-                                        <td>{{ product_movement.timestamp.strftime('%Y-%m-%d at %H:%M %p') }}</td>
+                                        <td>{{ product_movement.timestamp.strftime('%d/%m/%Y - %H:%M %p') }}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-sm bt" data-toggle="modal" data-target="#deleteModal{{ product_movement.movement_id }}">
+                                                <i class="fas fa-trash-alt pl-2"></i>
+                                            </button>
+                                            <a class="n" href="{{ url_for('product_movements.update_product_movement', movement_id=product_movement.movement_id) }}">
+                                                <i class="fas fa-pencil-alt"></i>
+                                            </a>
+                                        </td>
                                     </tr>
+                                    <div class="modal fade" id="deleteModal{{ product_movement.movement_id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="deleteModalLabel">Delete Post?</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <form action="{{ url_for('product_movements.delete_product_movement', movement_id=product_movement.movement_id) }}" method="POST">
+                                                        <input class="btn btn-danger" type="submit" value="Delete">
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 {% endfor %}
                             {% endif %}
                         </tbody>
                     </table>
                 </div>
-                <div class="add" style="margin-left: -1.2rem;">
+                <div class="add">
                     <button type="button" id="sidebarCollapse" class="add-button btn btn-primary">
                         <a href="{{ url_for('product_movements.new_product_movement') }}"><i class="fas fa-plus"></i></a>
                     </button><a class="b" href="{{ url_for('product_movements.new_product_movement') }}"><i>Move Product</i></a>
@@ -45,7 +72,7 @@
         </div>
     {% endif %}
     
-    {% if title=='Update Moved Product' %}
+    <!-- {% if title=='Update Moved Product' %}
         <div>
             <h3>{{ title }}</h3>  
             <h4>Moved: {{ products.get(product_movement.product_id).product_name }} From: {{ product_movement.from_location }} To: {{ product_movement.to_location }} on {{ product_movement.timestamp.strftime('%Y-%m-%d at %H:%M %p') }} ({{ product_movement.qty }}) 
@@ -53,7 +80,7 @@
                 <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button>
             </h4>
         </div>
-        <!-- Delete Modal -->
+        
         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -72,5 +99,5 @@
                 </div>
             </div>
         </div>
-    {% endif %}
+    {% endif %} -->
 {% endblock content %}

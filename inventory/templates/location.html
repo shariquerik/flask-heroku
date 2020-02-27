@@ -2,16 +2,60 @@
 {% block content %}
     {% if title=='Location' %}
         <div class="container px-5 py-3">    
-            <h2 class="mb-4">{{ title }}s</h2>  
+            <h2 class="mb-4 phead">{{ title }}s</h2>  
             <div class="row">
-                <div class="col-md-5">
-                    <ul class="list-group">
+                <div class="ml-3">
+                    <table class="table table-hover table-responsive table-bordered">
+                        <tbody>
+                            {% if not locations%}
+                                <tr>
+                                    <td colspan="3">No locations added. Please add location to view.</td>
+                                </tr>
+                            {% else %}
+                                {% for location in locations %}
+                                    <tr class="l">
+                                        <!-- <td>{{ loop.index }}.</td> -->
+                                        <td class="pl-3">{{ location.location_name }}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-sm bt" data-toggle="modal" data-target="#deleteModal{{ location.location_id }}">
+                                                <i class="fas fa-trash-alt pl-2"></i>
+                                            </button>
+                                            <a class="n" href="{{ url_for('locations.update_location', location_id=location.location_id) }}">
+                                                <i class="fas fa-pencil-alt"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <div class="modal fade" id="deleteModal{{ location.location_id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="deleteModalLabel">Delete Post?</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <form action="{{ url_for('locations.delete_location', location_id=location.location_id) }}" method="POST">
+                                                        <input class="btn btn-danger" type="submit" value="Delete">
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- <div class="col-md-5">
+                    <ul class="list-group" >
                         {% if locations %}
                             {% for location in locations %}
                                 <li class="list-group-item list-group-item-action l">
                                     <span>{{ loop.index }}.</span>
                                     <span class="pl-2">{{ location.location_name }}</span>
-                                    <button type="button" class="btn btn-sm bt" data-toggle="modal" data-target="#deleteModal">
+                                    <button type="button" class="btn btn-sm bt" data-toggle="modal" data-target="#deleteModal{{ location.location_id }}">
                                         <i class="fas fa-trash-alt pl-2"></i>
                                     </button>
                                     <a class="n" href="{{ url_for('locations.update_location', location_id=location.location_id) }}">
@@ -19,7 +63,7 @@
                                     </a>
                                 </li>
                                 
-                                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="deleteModal{{ location.location_id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -42,14 +86,14 @@
                         <li class="list-group-item list-group-item-action">No locations added. Please add location to view.</li>
                         {% endif %}
                         </ul>
-                    </div>
-                    <div class="add">
-                        <button type="button" id="sidebarCollapse" class="add-button btn btn-primary">
-                            <a href="{{ url_for('locations.new_location') }}"><i class="fas fa-plus"></i></a>
-                        </button><a class="b" href="{{ url_for('locations.new_location') }}"><i>Add Location</i></a>
-                    </div>
+                </div> -->
+                <div class="add">
+                    <button type="button" id="sidebarCollapse" class="add-button btn btn-primary">
+                        <a href="{{ url_for('locations.new_location') }}"><i class="fas fa-plus"></i></a>
+                    </button><a class="b" href="{{ url_for('locations.new_location') }}"><i>Add Location</i></a>
                 </div>
             </div>
+        </div>
     {% endif %}
     
     <!-- {% if title=='Update Location' %}

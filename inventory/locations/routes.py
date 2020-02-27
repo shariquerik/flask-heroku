@@ -25,7 +25,7 @@ def update_location(location_id):
         location.location_name = form.location_name.data
         db.session.commit()
         flash('Your location has been updated!', 'success')
-        return redirect(url_for('locations.location', location_id=location.location_id))
+        return redirect(url_for('main.location', location_id=location.location_id))
     elif request.method == 'GET':
         form.location_name.data = location.location_name
     form.submit.label.text = 'Update Location'
