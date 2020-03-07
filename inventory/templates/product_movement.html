@@ -31,7 +31,7 @@
                                         <td>{{ product_movement.to_location }}</td>
                                         <td>{{ product_movement.qty }}</td>
                                         <td>{{ product_movement.timestamp.strftime('%d/%m/%Y - %H:%M %p') }}</td>
-                                        <td>
+                                        <td class="td">
                                             <button type="button" class="btn btn-sm bt" data-toggle="modal" data-target="#deleteModal{{ product_movement.movement_id }}">
                                                 <i class="fas fa-trash-alt pl-2"></i>
                                             </button>

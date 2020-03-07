@@ -11,9 +11,8 @@
 	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
 
     <!-- Bootstrap CSS -->
-	<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-	<!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}"> -->
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
 	
 	<script src="https://kit.fontawesome.com/62e099589c.js" crossorigin="anonymous"></script>
 
@@ -23,108 +22,6 @@
         <title>Inventory App</title>
 	{% endif %}
 	
-	<style>
-
-		.list-group-item:first-child {
-			border-top-left-radius: 0.3rem;
-			border-top-right-radius: 0.3rem;
-		}
-		.list-group-item:last-of-type {
-			border-bottom-left-radius: 0.3rem !important;
-			border-bottom-right-radius: 0.3rem !important;
-		}
-
-		.phead {
-			font-size: 30px;
-			color: rgb(100, 99, 99);
-			text-transform: uppercase;
-		}
-
-		.table {
-			background-color: #fff;
-			border-radius: 5px;
-			color: rgb(54, 54, 54);
-		}
-
-		.table .thead-light th {
-			background-color:rgb(144, 150, 240);
-			color: #fff;
-		}
-
-		.table-bordered td {border: none !important; border-top: solid 1px #ccc !important;}
-		.table-bordered th {border: none !important; border-top: solid 1px #ccc !important;}
-
-		.add-button{
-			border-radius: 50% !important;
-		}
-
-		.add {
-			overflow: hidden;
-			background: #393c7f !important;
-			list-style: none;
-			white-space:nowrap;
-			margin-right: 10px;
-			border-radius: 25px;
-			display: inline-block;
-			height: 2.42rem;
-
-			position: relative;
-			margin-left: -1.3rem;
-			margin-top: -1.1rem;
-			z-index: 1;
-		}
-    
-		.add .b {
-			opacity: 0;
-			color: #fff;
-			max-width: 0;
-			display: inline-block;
-			text-decoration: none;
-			transition: max-width 1s ease-out .1s, opacity 1s ease-out .1s, color;
-		}
-		
-		.add .b i {
-            display: block;
-			padding-right: 1em;
-			padding-left: 0.5em;
-			font:1.1em/1 'rokkitt', sans-serif;
-			color: #fff;
-		}
-		
-		.add a i{
-			color: #fff;
-		}
-
-		.add:hover .b {
-			opacity: 1;
-			max-width: 200px;
-            transition: max-width 1s ease-out .1s, opacity 1s ease-out .1s, color .2s;
-		}
-
-		.n {
-			padding-top: 3px;
-			float: right;
-			display: none;
-			color: blue;
-		}
-
-		.bt {
-			float: right;
-			display: none;
-			color: red;
-		}
-
-		.l:hover .n {
-			display: inline;
-			color: blue;
-		}
-
-		.l:hover .bt {
-			display: inline;
-			color: red;
-		}
-
-	</style>
 </head>
 
 <body>
@@ -160,7 +57,7 @@
 		</nav>
 		<div id="content">
 			<!-- Page Content  -->
-			<div  class="p-4 px-md-5">
+			<div  class="p-4 px-md-4">
 				{% with messages = get_flashed_messages(with_categories=true) %}
 					{% if messages %}
 						{% for category, message in messages %}
@@ -190,7 +87,7 @@
     </script>
 
     <!-- Other JavaScript -->
-    <script src="{{ url_for('static', filename='main.js') }}"></script>
+	<script src="{{ url_for('static', filename='main.js') }}"></script>
 
 </body>
 

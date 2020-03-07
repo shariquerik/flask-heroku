@@ -15,7 +15,7 @@
                                 {% for location in locations %}
                                     <tr class="l">
                                         <!-- <td>{{ loop.index }}.</td> -->
-                                        <td class="pl-3">{{ location.location_name }}</td>
+                                        <td class="pl-3 first">{{ location.location_name }}</td>
                                         <td>
                                             <button type="button" class="btn btn-sm bt" data-toggle="modal" data-target="#deleteModal{{ location.location_id }}">
                                                 <i class="fas fa-trash-alt pl-2"></i>

@@ -105,7 +105,7 @@ def update_product_movement(movement_id):
             product_movement.timestamp = datetime.now()
             db.session.commit()
             flash('Your product movement has been updated!', 'success')
-            return redirect(url_for('product_movements.product_movement', movement_id=product_movement.movement_id))
+            return redirect(url_for('main.product_movement', movement_id=product_movement.movement_id))
     elif request.method == 'GET':
 
         form.from_location.data = convert_location_name_to_id(product_movement.from_location)

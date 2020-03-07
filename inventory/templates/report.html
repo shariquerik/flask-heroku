@@ -21,7 +21,7 @@
               </tr>
             {% else %}
               {% for product_movement in product_movements %}
-                <tr>
+                <tr class="report">
                   <td>{{ product.get(product_movement.product_id).product_name }}</td>
                   <td>{{ product_movement.to_location }}</td>
                   <td>{{ qty.filter_by(to_location=product_movement.to_location, from_location="", product_id=product_movement.product_id).first().qty }}</td>

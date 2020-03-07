@@ -3,10 +3,13 @@
     {% if title=='Product' %}
         <div class="container px-5 py-3">  
             <h2 class="mb-4 phead">{{ title }}s</h2>  
+            <!-- <div>
+                <input class="search" id="myInput" type="text" placeholder="Search..">
+            </div> -->
             <div class="row">
                 <div class="ml-3">
                     <table class="table table-hover table-responsive table-bordered">
-                        <tbody>
+                        <tbody id="myTable">
                             {% if not products%}
                                 <tr>
                                     <td colspan="3">No items found!! Please add product in the inventory.</td>
@@ -15,7 +18,7 @@
                                 {% for product in products %}
                                     <tr class="l">
                                         <!-- <td>{{ loop.index }}.</td> -->
-                                        <td class="pl-3">{{ product.product_name }}</td>
+                                        <td class="pl-3 first">{{ product.product_name }}</td>
                                         <td>
                                             <button type="button" class="btn btn-sm bt" data-toggle="modal" data-target="#deleteModal{{ product.product_id }}">
                                                 <i class="fas fa-trash-alt pl-2"></i>
@@ -90,7 +93,7 @@
                 <div class="add">
                     <button type="button" id="sidebarCollapse" class="add-button btn btn-primary">
                         <a href="{{ url_for('products.new_product') }}"><i class="fas fa-plus"></i></a>
-                    </button><a class="b" href="{{ url_for('products.new_product') }}"><i>Add Product</i></a>
+                    </button><a class="add-text" href="{{ url_for('products.new_product') }}"><i>Add Product</i></a>
                 </div>
             </div>
         </div>
