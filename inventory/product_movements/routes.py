@@ -21,18 +21,27 @@ def new_product_movement():
     existing_only_to_location = product_movement_exist(form, "", to_location)
     
     if form.validate_on_submit():
-        error = error_conditions(form, from_location, to_location, existing_only_from_location, existing_only_to_location, "new", "")
-        if(error == 'No error'):
+        error = error_conditions(form, from_location, to_location, existing_only_from_location, existing_only_to_location, 'new', '')
+        if(error != 'No error'):
+            return redirect(url_for('product_movements.new_product_movement'))
+        else:
             #qty++ in to_location
-            if existing_product_movement and existing_product_movement.from_location == "" and existing_product_movement.to_location != "":
+            if existing_product_movement and \
+               existing_product_movement.from_location == "" and \
+               existing_product_movement.to_location != "":
                 existing_only_to_location.qty = existing_only_to_location.qty + form.qty.data
 
             #qty-- in from_location
-            elif existing_product_movement and existing_product_movement.from_location != "" and existing_product_movement.to_location == "":
+            elif existing_product_movement and \
+                 existing_product_movement.from_location != "" and \
+                 existing_product_movement.to_location == "":
                 existing_only_from_location.qty = existing_only_from_location.qty - form.qty.data
 
             #qty++ in to_location and qty-- in from_location
-            elif (existing_product_movement and existing_product_movement.from_location != "" and existing_product_movement.to_location != "") or (existing_only_to_location and existing_only_from_location):
+            elif (existing_product_movement and \
+                  existing_product_movement.from_location != "" and \
+                  existing_product_movement.to_location != "" ) \
+                  or (existing_only_to_location and existing_only_from_location):
                 existing_only_to_location.qty = existing_only_to_location.qty + form.qty.data
                 existing_only_from_location.qty = existing_only_from_location.qty - form.qty.data
 

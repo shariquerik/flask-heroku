@@ -23,27 +23,34 @@ def error_conditions(form, from_location, to_location, existing_only_from_locati
     #Do not allow to create movement without location in either location field
     if from_location == "" and to_location == "":
         flash('Atleast one location is need', 'danger')
-        return redirect(url_for('product_movements.new_product_movement'))
     
     #to location and from location cannot be same
     elif from_location == to_location:
         flash('Cannot transfer in same location, please select different location', 'danger')
-        return redirect(url_for('product_movements.new_product_movement'))
 
     #check if from_location has enough quantity
-    elif check == 'new' and existing_only_from_location and ((existing_only_from_location.qty - form.qty.data) < 0):
-        flash('The quantity of product is not available in '+ from_location, 'danger')
-        return redirect(url_for('product_movements.new_product_movement'))
+    elif check == 'new' and existing_only_from_location and \
+         ((existing_only_from_location.qty - form.qty.data) < 0):
+        flash('The quantity of product available in '+ from_location+' is '+ str(existing_only_from_location.qty) + ' which is less than you need', 'danger')
+    
+    #check if from_location exist or not
+    elif check == 'new' and not existing_only_from_location and from_location != '':
+        flash('There is no product available in '+ from_location + ' location', 'danger')
     
     #check if from_location has enough quantity
-    elif check == 'update' and existing_only_from_location and ((existing_only_from_location.qty - form.qty.data + qty) < 0):
+    elif check == 'update' and existing_only_from_location and \
+         ((existing_only_from_location.qty - form.qty.data + qty) < 0):
         flash('The quantity of product is not available in '+ from_location, 'danger')
-        return redirect(url_for('product_movements.new_product_movement'))
 
     #In from location product is not available so throw an error.
-    elif (existing_only_to_location and (from_location != "" and to_location != "" and not existing_only_to_location) or to_location == "") and not existing_only_from_location:
+    elif (existing_only_to_location and \
+         (from_location != "" and to_location != "" and not existing_only_to_location) or \
+         to_location == "") and not existing_only_from_location:
         flash('The product is not available in '+ from_location +' location', 'danger')
-        return redirect(url_for('product_movements.new_product_movement'))
+
+    #Storage Capacity Error
+    elif form.qty.data > 100 or (existing_only_to_location and existing_only_to_location.qty + form.qty.data > 100):
+        flash('The quantity of product exceeds the storage capacity(100) of '+to_location+' location. You can only move '+str(100-existing_only_to_location.qty) + ' products.', 'danger')
 
     else:
         return 'No error'
